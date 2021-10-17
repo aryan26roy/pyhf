@@ -67,12 +67,6 @@ def test_get_measurement(workspace_factory):
         assert m['name'] == w.measurement_names[measurement_idx]
 
 
-def test_get_measurement_fake(workspace_factory):
-    w = workspace_factory()
-    m = w.get_measurement(poi_name='fake_poi')
-    assert m
-
-
 def test_get_measurement_nonexist(workspace_factory):
     w = workspace_factory()
     with pytest.raises(pyhf.exceptions.InvalidMeasurement) as excinfo:
@@ -97,12 +91,6 @@ def test_get_measurement_no_measurements_defined(workspace_factory):
 
 def test_get_workspace_measurement_priority(workspace_factory):
     w = workspace_factory()
-
-    # does poi_name override all others?
-    m = w.get_measurement(
-        poi_name='fake_poi', measurement_name='FakeMeasurement', measurement_index=999
-    )
-    assert m['config']['poi'] == 'fake_poi'
 
     # does measurement_name override measurement_index?
     m = w.get_measurement(
@@ -134,6 +122,27 @@ def test_get_workspace_model_default(workspace_factory):
     w = workspace_factory()
     m = w.model()
     assert m
+
+
+def test_get_workspace_model_nopoi(workspace_factory):
+    w = workspace_factory()
+    m = w.model(poi_name=None)
+
+    assert m.config.poi_name is None
+    assert m.config.poi_index is None
+
+
+def test_get_workspace_model_overridepoi(workspace_factory):
+    w = workspace_factory()
+    m = w.model(poi_name='lumi')
+
+    assert m.config.poi_name == 'lumi'
+
+
+def test_get_workspace_model_fakepoi(workspace_factory):
+    w = workspace_factory()
+    with pytest.raises(pyhf.exceptions.InvalidModel):
+        w.model(poi_name='afakepoi')
 
 
 def test_workspace_observations(workspace_factory):
@@ -213,7 +222,7 @@ def test_prune_modifier(workspace_factory):
         ws.prune(modifiers=modifier)
 
     new_ws = ws.prune(modifiers=[modifier])
-    assert modifier not in new_ws.parameters
+    assert modifier not in new_ws.model().config.parameters
     assert modifier not in [
         p['name']
         for measurement in new_ws['measurements']
@@ -274,22 +283,22 @@ def test_rename_sample(workspace_factory):
 
 def test_rename_modifier(workspace_factory):
     ws = workspace_factory()
-    modifier = ws.parameters[0]
+    modifier = ws.model().config.parameters[0]
     renamed = 'renamedModifier'
-    assert renamed not in ws.parameters
+    assert renamed not in ws.model().config.parameters
     new_ws = ws.rename(modifiers={modifier: renamed})
-    assert modifier not in new_ws.parameters
-    assert renamed in new_ws.parameters
+    assert modifier not in new_ws.model().config.parameters
+    assert renamed in new_ws.model().config.parameters
 
 
 def test_rename_poi(workspace_factory):
     ws = workspace_factory()
     poi = ws.get_measurement()['config']['poi']
     renamed = 'renamedPoi'
-    assert renamed not in ws.parameters
+    assert renamed not in ws.model().config.parameters
     new_ws = ws.rename(modifiers={poi: renamed})
-    assert poi not in new_ws.parameters
-    assert renamed in new_ws.parameters
+    assert poi not in new_ws.model().config.parameters
+    assert renamed in new_ws.model().config.parameters
     assert new_ws.get_measurement()['config']['poi'] == renamed
 
 
@@ -761,7 +770,9 @@ def test_combine_workspace(workspace_factory, join):
     combined = pyhf.Workspace.combine(ws, new_ws, join=join)
     assert set(combined.channels) == set(ws.channels + new_ws.channels)
     assert set(combined.samples) == set(ws.samples + new_ws.samples)
-    assert set(combined.parameters) == set(ws.parameters + new_ws.parameters)
+    assert set(combined.model().config.parameters) == set(
+        ws.model().config.parameters + new_ws.model().config.parameters
+    )
 
 
 def test_workspace_equality(workspace_factory):
@@ -864,3 +875,15 @@ def test_wspace_immutable():
     after = model.config.suggested_init()
 
     assert before == after
+
+
+def test_workspace_poiless(datadir):
+    """
+    Test that a workspace with a measurement with empty POI string is treated as POI-less
+    """
+    spec = json.load(open(datadir.join("poiless.json")))
+    ws = pyhf.Workspace(spec)
+    model = ws.model()
+
+    assert model.config.poi_name is None
+    assert model.config.poi_index is None
