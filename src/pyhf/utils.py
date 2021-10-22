@@ -1,4 +1,5 @@
 import json
+import numbers
 import jsonschema
 import pkg_resources
 from pathlib import Path
@@ -85,6 +86,13 @@ def _is_array_or_tensor(checker, instance):
     return isinstance(instance, (list, *tensor.array_types))
 
 
+def _is_number_or_tensor_subtype(checker, instance):
+    # bool inherits from int, so ensure bools aren't reported as ints
+    if isinstance(instance, bool):
+        return False
+    return isinstance(instance, (numbers.Number, *tensor.array_subtypes))
+
+
 def validate(spec, schema_id, *, version=None, allow_tensors=True):
     """
     Validate the provided instance, ``spec``, against the schema associated with ``schema_id``.
@@ -120,7 +128,9 @@ def validate(spec, schema_id, *, version=None, allow_tensors=True):
         Validator = jsonschema.Draft6Validator
 
         if allow_tensors:
-            type_checker = Validator.TYPE_CHECKER.redefine('array', _is_array_or_tensor)
+            type_checker = Validator.TYPE_CHECKER.redefine(
+                'array', _is_array_or_tensor
+            ).redefine('number', _is_number_or_tensor_subtype)
             Validator = jsonschema.validators.extend(
                 Validator, type_checker=type_checker
             )
