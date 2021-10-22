@@ -6,6 +6,7 @@ import yaml
 import click
 import hashlib
 
+from pyhf import tensor
 from pyhf.exceptions import InvalidSpecification
 
 SCHEMA_CACHE = {}
@@ -73,6 +74,17 @@ def load_schema(schema_id, version=None):
 load_schema('defs.json')
 
 
+def _is_array_or_tensor(checker, instance):
+    """
+    A helper function for allowing the validation of tensors as list types in schema validation.
+
+    .. warning:
+
+        This will check for valid array types using any backends that have been loaded so far.
+    """
+    return isinstance(instance, (list, *tensor.array_types))
+
+
 def validate(spec, schema_id, version=None, allow_tensors=True):
     """
     Validate the provided instance, ``spec``, against the schema associated with ``schema_id``.
@@ -104,9 +116,16 @@ def validate(spec, schema_id, version=None, allow_tensors=True):
             referrer=schema_id,
             store=SCHEMA_CACHE,
         )
-        validator = jsonschema.Draft6Validator(
-            schema, resolver=resolver, format_checker=None
-        )
+
+        Validator = jsonschema.Draft6Validator
+
+        if allow_tensors:
+            type_checker = Validator.TYPE_CHECKER.redefine('array', _is_array_or_tensor)
+            Validator = jsonschema.validators.extend(
+                Validator, type_checker=type_checker
+            )
+
+        validator = Validator(schema, resolver=resolver, format_checker=None)
         return validator.validate(spec)
     except jsonschema.ValidationError as err:
         raise InvalidSpecification(err, schema_id)
