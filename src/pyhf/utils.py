@@ -27,6 +27,31 @@ def __dir__():
 
 
 def load_schema(schema_id, version=None):
+    """
+    Load a version of a schema, referenced by its identifier.
+
+    Args:
+        schema_id (:obj:`string`): The name of a schema to validate against.
+        version (:obj:`string`): The version of the schema to use. If not set, the default will be the latest and greatest schema supported by this library. Default: ``None``.
+
+    Raises:
+        FileNotFoundError: if the provided ``schema_id`` cannot be found.
+
+    Returns:
+        :obj:`dict`: The loaded schema.
+
+    Example:
+        >>> import pyhf
+        >>> schema = pyhf.utils.load_schema('defs.json')
+        >>> type(schema)
+        <class 'dict'>
+        >>> schema.keys()
+        dict_keys(['$schema', '$id', 'definitions'])
+        >>> pyhf.utils.load_schema('defs.json', version='0.0.0')
+        Traceback (most recent call last):
+            ...
+        FileNotFoundError: ...
+    """
     global SCHEMA_CACHE
     if not version:
         version = SCHEMA_VERSION
@@ -48,12 +73,35 @@ def load_schema(schema_id, version=None):
 load_schema('defs.json')
 
 
-def validate(spec, schema_name, version=None):
-    schema = load_schema(schema_name, version=version)
+def validate(spec, schema_id, version=None, allow_tensors=True):
+    """
+    Validate the provided instance, ``spec``, against the schema associated with ``schema_id``.
+
+    Args:
+        spec (:obj:`object`): An object instance to validate against a schema
+        schema_id (:obj:`string`): The name of a schema to validate against. See :func:`pyhf.utils.load_schema` for more details.
+        version (:obj:`string`): The version of the schema to use. See :func:`pyhf.utils.load_schema` for more details.
+        allow_tensors (:obj:`bool`): A flag to enable or disable tensors as part of schema validation. If enabled, tensors in the ``spec`` will be treated like python :obj:`list`. Default: ``True``.
+
+    Raises:
+        ~pyhf.exceptions.InvalidSpecification: if the provided instance does not validate against the schema.
+
+    Returns:
+        None: if there are no errors with the provided instance
+
+    Example:
+        >>> import pyhf
+        >>> model = pyhf.simplemodels.uncorrelated_background(
+        ...     signal=[12.0, 11.0], bkg=[50.0, 52.0], bkg_uncertainty=[3.0, 7.0]
+        ... )
+        >>> pyhf.utils.validate(model.spec, 'model.json')
+        >>>
+    """
+    schema = load_schema(schema_id, version=version)
     try:
         resolver = jsonschema.RefResolver(
             base_uri=f"file://{pkg_resources.resource_filename(__name__, 'schemas/'):s}",
-            referrer=schema_name,
+            referrer=schema_id,
             store=SCHEMA_CACHE,
         )
         validator = jsonschema.Draft6Validator(
@@ -61,7 +109,7 @@ def validate(spec, schema_name, version=None):
         )
         return validator.validate(spec)
     except jsonschema.ValidationError as err:
-        raise InvalidSpecification(err, schema_name)
+        raise InvalidSpecification(err, schema_id)
 
 
 def options_from_eqdelimstring(opts):
