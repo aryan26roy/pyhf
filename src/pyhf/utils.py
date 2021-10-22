@@ -85,7 +85,7 @@ def _is_array_or_tensor(checker, instance):
     return isinstance(instance, (list, *tensor.array_types))
 
 
-def validate(spec, schema_id, version=None, allow_tensors=True):
+def validate(spec, schema_id, *, version=None, allow_tensors=True):
     """
     Validate the provided instance, ``spec``, against the schema associated with ``schema_id``.
 
