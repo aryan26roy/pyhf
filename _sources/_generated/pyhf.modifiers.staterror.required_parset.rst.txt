@@ -1,0 +1,6 @@
+pyhf.modifiers.staterror.required\_parset
+=========================================
+
+.. currentmodule:: pyhf.modifiers.staterror
+
+.. autofunction:: required_parset

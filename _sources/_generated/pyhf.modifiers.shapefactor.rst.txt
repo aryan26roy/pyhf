@@ -1,0 +1,31 @@
+﻿pyhf.modifiers.shapefactor
+==========================
+
+.. rubric:: Description
+
+.. automodule:: pyhf.modifiers.shapefactor
+
+.. currentmodule:: pyhf.modifiers.shapefactor
+
+
+.. rubric:: Classes
+
+.. autosummary::
+    :toctree: .
+    
+    shapefactor_builder
+    
+    shapefactor_combined
+    
+
+
+
+
+.. rubric:: Functions
+
+.. autosummary::
+    :toctree: .
+    
+    required_parset
+    
+

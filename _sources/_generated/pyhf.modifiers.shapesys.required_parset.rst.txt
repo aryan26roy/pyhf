@@ -1,0 +1,6 @@
+pyhf.modifiers.shapesys.required\_parset
+========================================
+
+.. currentmodule:: pyhf.modifiers.shapesys
+
+.. autofunction:: required_parset

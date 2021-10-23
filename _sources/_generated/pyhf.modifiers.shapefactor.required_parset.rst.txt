@@ -1,0 +1,6 @@
+pyhf.modifiers.shapefactor.required\_parset
+===========================================
+
+.. currentmodule:: pyhf.modifiers.shapefactor
+
+.. autofunction:: required_parset

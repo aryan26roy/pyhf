@@ -1,0 +1,63 @@
+histosys\_combined
+==================
+
+.. currentmodule:: pyhf.modifiers.histosys
+
+.. autoclass:: histosys_combined
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   .. rubric:: Attributes
+
+   
+   .. autoattribute:: histosys_combined.name
+   .. autoattribute:: histosys_combined.op_code
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: histosys_combined._precompute
+   
+   
+   .. automethod:: histosys_combined.apply
+   
+   
+   
+
+   
+   

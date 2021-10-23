@@ -1,0 +1,58 @@
+shapefactor\_builder
+====================
+
+.. currentmodule:: pyhf.modifiers.shapefactor
+
+.. autoclass:: shapefactor_builder
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: shapefactor_builder.append
+   
+   
+   .. automethod:: shapefactor_builder.collect
+   
+   
+   .. automethod:: shapefactor_builder.finalize
+   
+
+   
+   

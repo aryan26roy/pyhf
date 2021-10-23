@@ -1,0 +1,31 @@
+﻿pyhf.modifiers.normfactor
+=========================
+
+.. rubric:: Description
+
+.. automodule:: pyhf.modifiers.normfactor
+
+.. currentmodule:: pyhf.modifiers.normfactor
+
+
+.. rubric:: Classes
+
+.. autosummary::
+    :toctree: .
+    
+    normfactor_builder
+    
+    normfactor_combined
+    
+
+
+
+
+.. rubric:: Functions
+
+.. autosummary::
+    :toctree: .
+    
+    required_parset
+    
+

@@ -1,0 +1,31 @@
+﻿pyhf.modifiers.shapesys
+=======================
+
+.. rubric:: Description
+
+.. automodule:: pyhf.modifiers.shapesys
+
+.. currentmodule:: pyhf.modifiers.shapesys
+
+
+.. rubric:: Classes
+
+.. autosummary::
+    :toctree: .
+    
+    shapesys_builder
+    
+    shapesys_combined
+    
+
+
+
+
+.. rubric:: Functions
+
+.. autosummary::
+    :toctree: .
+    
+    required_parset
+    
+

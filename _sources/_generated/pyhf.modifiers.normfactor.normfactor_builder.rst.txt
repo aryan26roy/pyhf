@@ -1,0 +1,58 @@
+normfactor\_builder
+===================
+
+.. currentmodule:: pyhf.modifiers.normfactor
+
+.. autoclass:: normfactor_builder
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: normfactor_builder.append
+   
+   
+   .. automethod:: normfactor_builder.collect
+   
+   
+   .. automethod:: normfactor_builder.finalize
+   
+
+   
+   

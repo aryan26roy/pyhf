@@ -1,0 +1,58 @@
+shapesys\_builder
+=================
+
+.. currentmodule:: pyhf.modifiers.shapesys
+
+.. autoclass:: shapesys_builder
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: shapesys_builder.append
+   
+   
+   .. automethod:: shapesys_builder.collect
+   
+   
+   .. automethod:: shapesys_builder.finalize
+   
+
+   
+   

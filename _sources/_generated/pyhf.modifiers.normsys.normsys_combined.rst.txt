@@ -1,0 +1,63 @@
+normsys\_combined
+=================
+
+.. currentmodule:: pyhf.modifiers.normsys
+
+.. autoclass:: normsys_combined
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   .. rubric:: Attributes
+
+   
+   .. autoattribute:: normsys_combined.name
+   .. autoattribute:: normsys_combined.op_code
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: normsys_combined._precompute
+   
+   
+   .. automethod:: normsys_combined.apply
+   
+   
+   
+
+   
+   

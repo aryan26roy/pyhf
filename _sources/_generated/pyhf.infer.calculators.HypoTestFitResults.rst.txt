@@ -1,0 +1,61 @@
+﻿HypoTestFitResults
+==================
+
+.. currentmodule:: pyhf.infer.calculators
+
+.. autoclass:: HypoTestFitResults
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   .. rubric:: Attributes
+
+   
+   .. autoattribute:: HypoTestFitResults.asimov_pars
+   .. autoattribute:: HypoTestFitResults.free_fit_to_data
+   .. autoattribute:: HypoTestFitResults.free_fit_to_asimov
+   .. autoattribute:: HypoTestFitResults.fixed_poi_fit_to_data
+   .. autoattribute:: HypoTestFitResults.fixed_poi_fit_to_asimov
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+   

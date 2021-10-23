@@ -1,0 +1,6 @@
+pyhf.modifiers.normsys.required\_parset
+=======================================
+
+.. currentmodule:: pyhf.modifiers.normsys
+
+.. autofunction:: required_parset

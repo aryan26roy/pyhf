@@ -1,0 +1,63 @@
+normfactor\_combined
+====================
+
+.. currentmodule:: pyhf.modifiers.normfactor
+
+.. autoclass:: normfactor_combined
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   .. rubric:: Attributes
+
+   
+   .. autoattribute:: normfactor_combined.name
+   .. autoattribute:: normfactor_combined.op_code
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: normfactor_combined._precompute
+   
+   
+   .. automethod:: normfactor_combined.apply
+   
+   
+   
+
+   
+   

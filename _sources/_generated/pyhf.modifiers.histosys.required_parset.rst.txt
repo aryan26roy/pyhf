@@ -1,0 +1,6 @@
+pyhf.modifiers.histosys.required\_parset
+========================================
+
+.. currentmodule:: pyhf.modifiers.histosys
+
+.. autofunction:: required_parset

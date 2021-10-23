@@ -1,0 +1,31 @@
+﻿pyhf.modifiers.normsys
+======================
+
+.. rubric:: Description
+
+.. automodule:: pyhf.modifiers.normsys
+
+.. currentmodule:: pyhf.modifiers.normsys
+
+
+.. rubric:: Classes
+
+.. autosummary::
+    :toctree: .
+    
+    normsys_builder
+    
+    normsys_combined
+    
+
+
+
+
+.. rubric:: Functions
+
+.. autosummary::
+    :toctree: .
+    
+    required_parset
+    
+

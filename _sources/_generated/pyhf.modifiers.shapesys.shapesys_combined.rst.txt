@@ -1,0 +1,66 @@
+shapesys\_combined
+==================
+
+.. currentmodule:: pyhf.modifiers.shapesys
+
+.. autoclass:: shapesys_combined
+   :show-inheritance:
+
+   .. automethod:: __init__
+
+   
+   
+   .. rubric:: Attributes
+
+   
+   .. autoattribute:: shapesys_combined.name
+   .. autoattribute:: shapesys_combined.op_code
+   
+   
+
+   
+
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   .. automethod:: shapesys_combined._precompute
+   
+   
+   .. automethod:: shapesys_combined._reindex_access_field
+   
+   
+   .. automethod:: shapesys_combined.apply
+   
+   
+   
+
+   
+   
